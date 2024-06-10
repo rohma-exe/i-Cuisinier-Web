@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>i-Cuisinier App - Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Login</div>
+      <form class="login-form" id="login-form">
+        <input type="email" id="email" placeholder="Enter your Email" />
+        <input type="password" id="password" placeholder="Enter Password" />
+        <button type="submit" class="button">Login</button>
+      </form>
+      <div class="register-text">
+        Don't have an account? <a href="register.html">Register</a>
+      </div>
+    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD_wq6zYDWS3KG_SNs4lv1BMbx5hjEXvZ4",
+        authDomain: "i-cuisinier-authentication.firebaseapp.com",
+        projectId: "i-cuisinier-authentication",
+        storageBucket: "i-cuisinier-authentication.appspot.com",
+        messagingSenderId: "313440951916",
+        appId: "1:313440951916:web:903392a94aa1f8b808c249",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          try {
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "homepage.html";
+          } catch (error) {
+            console.error(error);
+            alert("Login failed. Please check your email and password.");
+          }
+        });
+    </script>
+  </body>
+</html>

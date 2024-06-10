@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to i-Cuisinier</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Welcome to i-Cuisinier</div>
+      <div class="subtitle">Let’s enhance your cooking experience</div>
+      <form class="register-form" id="register-form">
+        <input type="text" id="name" placeholder="Enter your Name" />
+        <input type="email" id="email" placeholder="Enter your Email" />
+        <input type="password" id="password" placeholder="Enter Password" />
+        <input
+          type="password"
+          id="confirm_password"
+          placeholder="Confirm Password"
+        />
+        <button type="submit" id="signup-btn" class="button">Register</button>
+      </form>
+      <div class="login-text">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyD_wq6zYDWS3KG_SNs4lv1BMbx5hjEXvZ4",
+        authDomain: "i-cuisinier-authentication.firebaseapp.com",
+        projectId: "i-cuisinier-authentication",
+        storageBucket: "i-cuisinier-authentication.appspot.com",
+        messagingSenderId: "313440951916",
+        appId: "1:313440951916:web:903392a94aa1f8b808c249",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm_password").value;
+          const errorMessage = document.createElement("div");
+          errorMessage.className = "error-message";
+
+          if (password !== confirmPassword) {
+            errorMessage.textContent = "Passwords do not match.";
+            document.querySelector(".register-form").appendChild(errorMessage);
+            return;
+          }
+
+          try {
+            const userCredential = await createUserWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+            console.log("User signed up successfully", userCredential.user);
+            window.location.href = "homepage.html";
+          } catch (error) {
+            console.error(error);
+            alert(error.message);
+          }
+        });
+    </script>
+  </body>
+</html>

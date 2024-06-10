@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>i-Cuisinier App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="image-container">
+        <img src="1.png" alt="i-Cuisinier Image" />
+      </div>
+      <div class="title">Smart Cooking with i-Cuisinier</div>
+      <div class="subtitle">
+        A Smart Cooking Assistant for Seamless Culinary Experience
+      </div>
+      <button class="button"><a href="register.html">GET STARTED</a></button>
+    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyD_wq6zYDWS3KG_SNs4lv1BMbx5hjEXvZ4",
+        authDomain: "i-cuisinier-authentication.firebaseapp.com",
+        projectId: "i-cuisinier-authentication",
+        storageBucket: "i-cuisinier-authentication.appspot.com",
+        messagingSenderId: "313440951916",
+        appId: "1:313440951916:web:903392a94aa1f8b808c249",
+      };
+      const app = initializeApp(firebaseConfig);
+    </script>
+  </body>
+</html>
